@@ -45,7 +45,8 @@ git push -u origin master
 
 
 ## 如果和線上版本衝突
-''' git pull
+> git pull
+git會做記號，刪除不要的，保留要的，解決衝突
 
 ## 編輯時常用命令
 
@@ -57,3 +58,23 @@ git push -u origin master
 | 程式碼要用的縮排： | \>              |
 | 一般的向右縮排：   | 四個space       |
 | 數字項目：        | 數字、句點、空白  |
+
+## 個人網頁可以善用github pages
+
+1. 像開新專案一樣，只是命名要命成  
+使用者名稱.github.io
+
+2. setting裡選擇你要的theme
+
+3. 和一般專案一樣上傳  
+例如，本地端放在資料夾中的檔：  
+/yellowful/githubNote.md  
+和一般專案一樣上傳後  
+網址會是：  
+https://yellowful.github.io/githubNote  
+
+4. 首頁得自己做  
+以前github有The Automatic Page Generator的按鈕可以用  
+現在看起來只給企業用戶使用  
+或是可以去jekyll用：  
+https://jekyllrb.com

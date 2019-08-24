@@ -73,7 +73,7 @@ git會做記號，刪除不要的，保留要的，解決衝突
 4. 本地端同樣要在資料夾中新建專案  
 然後要把遠地端的「使用者名稱.github.io」資料夾抓下來  
 username換成自己的使用者名稱
-> git clone https://github.com/username/username.github.io
+> git clone https://github.com/username/使用者名稱.github.io
 
 3. 和一般專案一樣上傳  
 例如，本地端放在資料夾中的檔：  

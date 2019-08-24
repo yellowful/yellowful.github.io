@@ -44,9 +44,8 @@ git push -u origin master
 >https://github.com/
 
 
-##如果和線上版本衝突
-'''
-git pull
+## 如果和線上版本衝突
+''' git pull
 
 ## 編輯時常用命令
 

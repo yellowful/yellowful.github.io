@@ -70,12 +70,21 @@ git會做記號，刪除不要的，保留要的，解決衝突
 
 2. setting裡選擇你要的theme
 
+4. 本地端同樣要在資料夾中新建專案  
+然後要把遠地端的「使用者名稱.github.io」資料夾抓下來  
+username換成自己的使用者名稱
+> git clone https://github.com/username/username.github.io
+
 3. 和一般專案一樣上傳  
 例如，本地端放在資料夾中的檔：  
 /yellowful/githubNote.md  
 和一般專案一樣上傳後  
 網址會是：  
 https://yellowful.github.io/githubNote  
+如果你的資料夾裡面有index.html作為首頁，例如：  
+yellowful/index.html  
+那麼以下網址就會直接打開你的網站了：  
+https://yellowful.github.io/
 
 4. 首頁得自己做  
 以前github有The Automatic Page Generator的按鈕可以用  

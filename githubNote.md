@@ -43,6 +43,11 @@ git push -u origin master
 2. 到github上註冊
 >https://github.com/
 
+
+##如果和線上版本衝突
+'''
+git pull
+
 ## 編輯時常用命令
 
 | 用途：           | 命令             |

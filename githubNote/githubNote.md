@@ -47,6 +47,9 @@ git push -u origin master
 2. 到github上註冊
 >https://github.com/
 
+3. 在本機上設定username和email
+> git config --global user.name "yellowful"
+> git config --global user.email "richenyou@gmail.com"
 
 ## 如果和線上版本衝突
 > git pull
@@ -71,8 +74,8 @@ git會做記號，刪除不要的，保留要的，解決衝突
 2. setting裡選擇你要的theme
 
 4. 本地端同樣要在資料夾中新建專案  
-然後要把遠地端的「使用者名稱.github.io」資料夾抓下來  
-> git clone https://github.com/username/使用者名稱.github.io
+然後要把遠地端的「使用者名稱.github.io」資料夾抓下來(把yellowful替換成你自己的使用者名稱)  
+> git clone https://github.com/yellowful/yellowful.github.io
 
 3. 和一般專案一樣上傳  
 例如，本地端放在資料夾中的檔：  

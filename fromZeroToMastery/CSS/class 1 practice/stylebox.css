@@ -1,0 +1,8 @@
+.boxstyle{
+	margin: 20px;
+	display: inline-block;
+	border: 5px solid blue;
+	padding: 5px 20px;
+	width: 60px;
+	height: 40px;
+}

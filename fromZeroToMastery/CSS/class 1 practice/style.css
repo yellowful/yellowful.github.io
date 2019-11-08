@@ -1,0 +1,66 @@
+body{
+	background-color: #474000;
+	color: rgba(221,207, 63,1);
+}
+
+ul{
+	background-color: rgba(135,123,  4,1);
+	color: rgba(255,242,112,1);
+	list-style-type: lower-greek;
+}
+
+p + h2 {
+	text-align: center;
+}
+
+P{
+font-size: 20px;
+color: rgba(255,242,112,0.5);
+}
+
+h1{
+	color: rgba(100,100,200,1);
+}
+
+.tryclass{
+	color = rgba(200,200,200,0.8);
+	background-color: rgba(100,100,120,1);
+	font-style: italic;
+	font-size: 150%;
+	line-height: 100%;
+	text-decoration: underline;
+	font-family: "times new roman", 'Noto Sans TC', sans-serif;
+}
+
+#tryId{
+background-color: rgba(200,200,200,1);
+color: rgba(100,100,120,0.8);	
+}
+
+.tryclass2{
+	color: black;
+}
+
+.tryclass2:first-child{
+	color: blue;
+}
+
+.tryclass2:hover:last-child {
+	color: red;
+	font-style: italic;
+	font-weight: 100;
+	font-size: 30px;
+}
+
+img{
+	float: right;
+}
+
+p:nth-child(5n){
+	clear: both;
+}
+
+.testfontsize{
+	font-size: 2rem;
+	color: rgba(255,20,20,0.5);
+}

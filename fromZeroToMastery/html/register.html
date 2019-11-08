@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+</head>
+<body style="background-color: gray">
+
+	<form method=get action=test.php>
+		<!-- get資料會由網址傳出，
+		post資料則po到body裡，
+		給其它語言用，
+		action則是執行伺服器上有某php程式，
+		但是現在有其它更好的用法了 -->
+		First Name:<input type="text" name="firsName"><br>
+		Last Name:<input type="text" name="lastName"><br>
+		Email:<input type="email" required name="email"><br>
+		Password:<input type="password" minlength="5" name="password"><br>
+		Birthday:<input type="date" name="birthday"><br>
+		Gender:<br>
+		<input type="radio" name="Gender" value="Male">Male<br>
+		<input type="radio" name="Gender" value="Female">Female<br>
+		<input type="radio" name="Gender" value="Other">Other<br>
+		Pets:<br>
+		<input type="checkbox" name="pets" value="Cat">Cat<br>
+		<input type="checkbox" name="pets" value="Dog">Dog<br>
+		Cars:<br>
+		<select multiple name="cars">
+			<!-- 用multiple時，要按command鍵，才能多選 -->
+			<option value="Volvo">volvo</option>
+			<option value="BMW">bmw</option>
+		</select><br>
+		<textarea rows="4" cols="50">
+			this is text area
+
+		</textarea><br>
+
+		<div contenteditable="true">
+			this is conteneditable
+		</div><br>
+		<meter value=".2">this is meter</meter><br>
+		<input type="range" name="slider" min="-10" max="40"><br>
+
+
+
+		<input type="submit" value="Register!">
+		<input type="reset">
+	</form>
+<!-- 原來required和格式檢查都失效時，是因為沒下form的tag，form和tag是習習相關 -->
+
+
+
+<br><a href="helloworld.html">back</a><br>
+
+
+<h2>result:</h2><br>
+firsName=r
+&lastName=h
+&email=richenyou%40gmail.com
+&password=dddddddd
+&birthday=2019-10-08
+&Gender=Other
+&pets=Dog
+&cars=BMW
+
+
+</body>
+</html>

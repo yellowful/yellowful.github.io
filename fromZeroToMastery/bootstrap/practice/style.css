@@ -1,0 +1,44 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	background:url(header.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+
+header {
+	color: #e2dbdb;
+}
+
+h1 {
+	font-size: 4em;
+}
+
+hr{
+	max-width: 50px;
+	border-color: orange;
+	border-width: 5px;
+	border-radius: 2px;
+}
+
+.container-blank {
+	height: 5em;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+.btn-findout-more {
+	border-radius: 50px;
+	background-color: #f05f44
+	border-color:#f05f44;
+}
+
+.btn-findout-more:hover {
+	border-radius: 50px;
+	background-color: #ee4b08
+	border-color:#ee4b08;
+	border-width:4px; 	
+}

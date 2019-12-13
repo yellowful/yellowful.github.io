@@ -1,0 +1,13 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	background: #dddddd;
+}
+
+.container-email {
+	width: 50%;
+	height: 50%;
+	background-color: white;
+	margin: 50px auto;
+}
+

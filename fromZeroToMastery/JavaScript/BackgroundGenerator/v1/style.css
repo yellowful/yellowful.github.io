@@ -1,0 +1,13 @@
+html {
+    width: 100%;
+    height: 100%;
+    background-image:linear-gradient(to right,blue,orange);
+}
+
+body{
+    text-align: center;
+}
+
+p:first-of-type {
+    text-transform: uppercase;
+}//first-child沒效果

@@ -169,3 +169,11 @@
           2.   和.padStart及.padEnd功能相反。
      6.   Object.fromEntries和Object.entries功能剛好相反，是把array變回object。
      7.   try{} catch{}，try裡面如果不能跑，就執行cath裡面的東西，例如：發出錯誤訊息。catch可以有參數catch(error){}，用來傳遞系統的錯誤訊息。
+20.  synchronous和asynchronous有什麼不同？JavaScript怎麼運作？
+     1.   synchronous：browser會從最外層開始讀，然後往上疊，接著讀到最裡層，會疊在最上面，這就是在call stack。接著從call stack最上面開始一行一行執行，執行完成就從記憶體裡刪除，也就是first in, last out。如果在call stack中越來越多，超過分配的記憶體，就會stack overflow。
+     2.   asynchronous：通常是multi-thread的程式設計，需要管各個thread的進程，較不容易理解。
+     3.   JavaScript：是synchronous的語言，非常容易理解，但是執行環境卻提供一些asynchronous的功能。
+          1.   Web APIs：有DOM、AJAX、Timeout...等等。
+          2.   Callback Queue：addEventListener。有個Event Loop，會不斷檢查
+          3.   以setTimeout為例：web browser執行到setTimeout這行時，會丟給Web APIs，Web APIs會等時間到，再把要做的事丟給Callback Queue，Callback Que會等call stack跑完再把事情丟進call stack中。
+     4.   

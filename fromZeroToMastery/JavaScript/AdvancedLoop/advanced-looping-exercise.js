@@ -101,8 +101,22 @@ amazonBasket = {
 function checkBasket(basket, lookingFor) {
   for(item in basket){
     if(item === lookingFor){
-      return `Yes, there is: ${lookingFor}: ${basket.item.value}`
+      return `Yes, there it is: ${lookingFor}.`
     }
   }
   return `No, there is no anything you want.`
 }
+
+checkBasket(amazonBasket, 'books');
+
+
+
+
+//-----------------------
+const flattened = [[1,2],[3,4],[5,6]].reduce(
+  (acc,items) =>{
+    debugger;
+    return acc.concat(items);
+  },[]);
+  console.log(flattened);
+  

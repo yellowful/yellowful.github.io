@@ -1,3 +1,4 @@
+#Command Line
 1. clear：清畫面
 2. cd /：移到root
 3. cd ~：移到home
@@ -12,7 +13,10 @@
    2. 改名稱（包括檔案和資料夾）
 7. nano：編輯文字檔
 8. shell：
-   1. bash：mac內建，設定檔：~/.bash_profile
+   1. bash：
+      1. mac內建
+      2. 設定檔：~/.bash_profile
+      3. 一些特殊設定：https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
    2. fish：
       1. 安裝fish的指令：brew install fish
       2. 設定檔：~/.config/fish/config.fish
@@ -26,4 +30,3 @@
        2.  安裝app時的指令：例如，brew cask install sketch
 10. 可以批次更新，批次灌軟體。
 11. https://onejar99.com/mac-homebrew-homebrew-cask-mac/
-12. 一些特殊設定：https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/

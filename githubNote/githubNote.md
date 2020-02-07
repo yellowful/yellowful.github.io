@@ -6,56 +6,103 @@
 
 ## 平常建立新專案時常用步驟
 
-*最常用的會是步驟4、5、8*
+*最常用的會是步驟4、5、6*
 
-1. 在github上開啟一個新的專案  
-    可以把github提供的命令先複製起來放著  
->git remote add origin https://github.com/yellowful/note.git  
-git push -u origin master
+1. 在github上開啟一個新的repository(專案)，把網站上的資料clone下來：
+    1.  取repository的名字，例如homeworkgit
+    2.  點initialize this repository with a README
+    3.  步驟1的右邊有網下載網址可以複製。
+    4.  在本地下資料夾下指令：git clone https://github.com/yellowful/homeworkgit.git，網址請替換成自己複製的網址。
 
-2. 在本機開一個和專案名稱相同的資料夾，並到到該資料夾中，下命令  
->git init
+2. 要寫的程式、筆記、檔案存在這個資料夾中
 
-3. 要寫的程式、筆記、檔案存檔
+3. 把更動的歷史儲存，只有一個句點代表這個資料夾的所有檔。
+    >git add .
 
-4. 更新到暫存區    
->git add 檔名
-
-5. 在本機建立一個版本，並為版本寫下一行的說明  
->git commit -m '一行說明'  
+4. 在本機建立一個版本，並為版本寫下一行的說明  
+    >git commit -m '一行說明'  
     注意要有單引號
 
-6. 若沒有下參數-m，則會進入多行的說明模式，這是vim的環境。  
->i進入編輯模式  
+5. 若沒有下參數-m，則會進入多行的說明模式，這是vim的環境。  
+    >i進入編輯模式  
 按esc鍵會進入命令模式  
 命令模式下:wq，就是存檔離開
 
-7. 下步驟1複製的第一個命令  
->git remote add origin https://github.com/yellowful/note.git
+6. 上傳指令：
+   >git push
 
-8. 下步驟 1複製的第二個命令  
->git push -u origin master
+7. 要更新github上的版本，就重覆步驟4、5、6，要看現在的更動狀態的話：
+   >git status
 
-9. 要更新github上的版本，就重覆步驟4、5、8
+8. 步驟1可以改成：
+   1.  開完新的repository後，把github提供的命令先複製起來放著  
+    >git remote add origin https://github.com/yellowful/note.git  
+    git push -u origin master
+   2. 在本機開一個和專案名稱相同的資料夾，並到到該資料夾中，下命令
+    >git init
+   3. 步驟6之前下先前複製的命令： 
+    >git remote add origin https://github.com/yellowful/note.git
+    >git push -u origin master
+
+## 開branch
+1. 開新branch，例如名稱設為branch1
+   > git branch branch1
+2. 把現在狀態移到branch裡
+   > git checkout branch1
+3. 開始工作，改你的檔案，改完存檔。
+4. 將這個版本上傳github：
+   1. 進度存檔：
+    >git add .
+    git commit -m 'first branch update' 
+   2. 因為是這個branch1第一次上傳，所以要下github端的起始指令：
+    > git push --set-upstream origin branch1
+   3. 之後這個branch要上傳都不用了下這個指令了，而是直接下：
+    > git push
+   4. 想把主線的工作，別人新加的功能加回來這個branch的話。
+      1. 切到master：
+       >git checkout master
+      2. 抓回主線的進度：
+       > git pull 
+      3. 切回branch：
+       >git chechout branch1
+      4. 把master整合進來：
+       > git merge master
+      5. 檢視衝突的地方，修改檔案，存檔。
+      6. 儲存進度：
+       > git add .
+       git commit -m 'first merge'
+      8. 上傳：(假如這個branch第一次上傳，請參考第2點)
+       >git push
+      9. 到githb上點新的pull request。
+      10. repository的管理者就可以點同意merge，或點comment，要求修改。或在本地端：
+       > git checkout master
+        git merge --no-ff branch1
+        git push origin master
+
 
 
 ## 第一次使用的常用步驟
 
 1. 首先下載git，並安裝
->https://git-scm.com/
+    >https://git-scm.com/
 
 2. 到github上註冊
->https://github.com/
+    >https://github.com/
 
 3. 在本機上設定username和email
-> git config --global user.name "yellowful"
-> git config --global user.email "richenyou@gmail.com"
+    > git config --global user.name "yellowful"
+git config --global user.email "richenyou@gmail.com"
 
 ## 如果和線上版本衝突
+下載
 > git pull
-git會做記號，刪除不要的，保留要的，解決衝突
 
-## 編輯時常用markdown語言
+git會做記號，刪除不要的，保留要的，解決衝突
+> git add .
+git commit -m '一行說明'
+git push
+
+## 編輯時常用markdown語法
 
 | 用途：           | 命令             |
 |:----------------|:----------------|

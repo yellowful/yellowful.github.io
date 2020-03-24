@@ -146,17 +146,25 @@
     15.  JSON.stringify：把object轉string。
     16.  type coercion：JS引擎會自動改變變數的型別，修正人類的錯誤，稱為coercion，但這能力太強，要非常小心，最好不要用。永遠用“===”，不要用“==”。
     17.  []===[]為false因為兩個value相同，但reference不同。class有同樣的效果。
-17.  ES7：
+17.  Prototype:
+     1.   https://blog.techbridge.cc/2017/04/22/javascript-prototype/
+     2.   https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/prototype.html
+     3.   ES6以前的語法，ES6以後已經用語法糖包起來了，用constructor和來取代prototype的用法。
+     4.   每個object都有_proto_，指向自己的上一層，一般就是function的prototype()。
+     5.   每個prototype()都有constructor，都是function本身。
+     6.   prototype()也是object，他是javascript設計的Object弄出來的instance，所以他的_proto_是指向Object弄出來的instance。
+     7.   prototype()讓不同instance(object)，可以共用方法，不用多花記憶體。
+18.  ES7：
      1.   .includes()在判斷array裡是否有括號裡的元素，有的話就回傳true，沒有就回傳false。
      2.   .includes有另一個用法，是判斷這個字串裡是否有括號裡的字串，有的話傳true，反之傳false。
      3.   兩個星星的運算元，用來算次方。
-18.  ES8：
+19.  ES8：
      1.   .padStart在string前加字，第一個參數是要加幾個字，第二個參數是要加什麼字。.padEnd則是加在後面。
      2.   如果要處理一堆Object，要把object變array比較容易處理了：
           1.   Object.key得到一個key的array，要配合object[key]，才能拿到對應的value。
           2.   Object.value得到一個value的array。
           3.   Object.entries得到一個二維array，同時有key和value。二維陣列用map時，裡面的value是一個陣列。
-19.  ES10：
+20.  ES10：
      1.   .flat：可以把多層array去掉，沒放參數代表一層，全部去掉參數可以用Infinity。另一個功能是把空的element刪掉。
      2.   .join：不是ES10的功能，是舊功能，可以把array去掉，得到一個組合的string。
           1.   .flat和.join不同之處在於，.flat回傳的是array，.join回傳的是一個字串。
@@ -169,7 +177,7 @@
           2.   和.padStart及.padEnd功能相反。
      6.   Object.fromEntries和Object.entries功能剛好相反，是把array變回object。
      7.   try{} catch{}，try裡面如果不能跑，就執行cath裡面的東西，例如：發出錯誤訊息。catch可以有參數catch(error){}，用來傳遞系統的錯誤訊息。
-20.  synchronous和asynchronous有什麼不同？JavaScript怎麼運作？
+21.  synchronous和asynchronous有什麼不同？JavaScript怎麼運作？
      1.   synchronous：browser會從最外層開始讀，然後往上疊，接著讀到最裡層，會疊在最上面，這就是在call stack。接著從call stack最上面開始一行一行執行，執行完成就從記憶體裡刪除，也就是first in, last out。如果在call stack中越來越多，超過分配的記憶體，就會stack overflow。
      2.   asynchronous：通常是multi-thread的程式設計，需要管各個thread的進程，較不容易理解。
      3.   JavaScript：是synchronous的語言，非常容易理解，但是執行環境卻提供一些asynchronous的功能。

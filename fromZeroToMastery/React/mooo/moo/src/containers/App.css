@@ -1,0 +1,11 @@
+
+@font-face {
+font-family: 'Swatch it Regular';
+font-style: normal;
+font-weight: normal;
+src: local('Swatch it Regular'), url('SWATRG__.woff') format('woff');
+}
+
+h1 {
+    font-family: 'Swatch it Regular';
+}

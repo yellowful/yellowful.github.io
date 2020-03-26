@@ -21,6 +21,7 @@ componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then(users => {this.setState({allRobots:users})});
+    debugger;
 //    console.log('componentDidMount');
 }
 
@@ -33,6 +34,7 @@ onSearchChange = (event) => {
 
 render(){
     const { allRobots, searchfield } = this.state;
+    debugger;
     const filteredRobots = allRobots.filter(
     robot => {
         return robot.name.toLowerCase().includes(searchfield.toLowerCase())

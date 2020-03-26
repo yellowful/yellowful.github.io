@@ -18,11 +18,35 @@ constructor(){
 }
 
 componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(users => {this.setState({allRobots:users})});
-//    console.log('componentDidMount');
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    // .then(response => response.json())
+    // .then(users => {this.setState({allRobots:users})});
+    let randomArray = [];
+    for(let i=0;i<10;i++){
+        let randomNumber = Math.floor(Math.random()*88);
+        if (!randomArray.includes(randomNumber)){
+            randomArray.push(randomNumber);
+        }
+    }    
+
+    async function getData(randomArray){
+        const delay = t => {    // 先撰寫一個等待的 function
+            return new Promise(resolve => {
+              setTimeout(resolve, t);
+            });
+          };
+        let randomRobots = [];    
+        for await (let randomNumber of randomArray){
+                let promiseFetch = await fetch(`https://swapi.co/api/people/${randomNumber}/`);
+                randomRobots.push(await promiseFetch.json());
+                await delay(100);
+            }
+    return randomRobots;    
+    }
+    this.setState({allRobots:getData(randomArray)});
+    debugger;
 }
+
 
 onSearchChange = (event) => {
     this.setState({searchfield: event.target.value});
@@ -33,10 +57,12 @@ onSearchChange = (event) => {
 
 render(){
     const { allRobots, searchfield } = this.state;
+    debugger;
     const filteredRobots = allRobots.filter(
     robot => {
-        return robot.name.toLowerCase().includes(searchfield.toLowerCase())
-    })
+            return robot.name.toLowerCase().includes(searchfield.toLowerCase());
+        }
+    );
 //為何filteredRobots不放在onSearchChange裡面，而需要移到render(){}裡面呢？
 //因為這樣filteredRobots就才會是render()的區域變數，CardList要用filteredRobots時，才認得filteredRobots
 //為何searchfield得在render之外呢？
@@ -63,3 +89,5 @@ if (!allRobots.length){
 
 
 export default App;
+
+

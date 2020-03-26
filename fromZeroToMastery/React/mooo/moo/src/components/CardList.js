@@ -10,7 +10,7 @@ const CardList = ({robots}) => {
     const cardComponent = robots.map(
         (items) => {
             return (
-                <Card key={items.id} id={items.id} name={items.name} email={items.email} />
+                <Card key={items.id} id={items.id} name={items.name} hair_color={items.hair_color} />
             )
         }
     )

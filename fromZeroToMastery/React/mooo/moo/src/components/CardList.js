@@ -7,19 +7,24 @@ const CardList = ({robots}) => {
     //     throw new Error('Noooooo')
     // }
 
-    const cardComponent = robots.map(
-        (items) => {
-            return (
-                <Card key={items.id} id={items.id} name={items.name} hair_color={items.hair_color} />
-            )
-        }
-    )
-
-        return (
-            <div>
-                {cardComponent}
-            </div>
+    if (!robots.length){
+        return<h1 className = 'tc'>Loading</h1>
+    } else{        
+//        debugger;
+        const cardComponent = robots.map(
+            (items) => {
+                return (
+                    <Card key={items.id} id={items.id} name={items.name} height={items.height} mass={items.mass}/>
+                )
+            }
         )
+
+            return (
+                <div>
+                    {cardComponent}
+                </div>
+            )
+    }
 };
 
 export default CardList;

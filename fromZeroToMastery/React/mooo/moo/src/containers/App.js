@@ -41,6 +41,7 @@ componentDidMount(){
     }
     //執行
     getData(randomArray);
+
 }
 
 //鍵盤打字時要執行的，這是自行定義的名稱
@@ -88,6 +89,7 @@ render(){
                     </Scroll>                
                 </div>)
 }
+
 
 
 }

@@ -10,6 +10,7 @@ Backend
       3. W3C的API：https://www.w3schools.com/xml/simple.xml
       4. 星際大戰：https://swapi.co/
       5. 天氣：https://openweathermap.org/api?ref=public-apis
+      6. telegram：https://core.telegram.org/api
    2. 付費：
       1. facebook
       2. google maps

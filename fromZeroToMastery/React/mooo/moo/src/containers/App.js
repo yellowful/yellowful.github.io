@@ -3,65 +3,96 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 //import { robots } from './robots';
 import Scroll from '../components/Scroll';
-import ErrorB from '../components/ErrorB'
+import ErrorBoundry from '../components/ErrorBoundry'
 import './App.css';
 
-
+//最頂端的流程
 class App extends Component {
+
+//設定初始值
 constructor(){
     super();
     this.state = {
-        allRobots: [],
-        searchfield: ''
-    }//定義這個class產生物件時的各個初始值
-//    console.log('constructor');
-}
-
-componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(users => {this.setState({allRobots:users})});
-    debugger;
-//    console.log('componentDidMount');
-}
-
-onSearchChange = (event) => {
-    this.setState({searchfield: event.target.value});
-//    console.log('onSearchChange');
-}
-//定義onSearchChange，供searchBox的props下傳，event發生時，就setState
-//和JS不太一樣的是，前面不用const、let、或function
-
-render(){
-    const { allRobots, searchfield } = this.state;
-    debugger;
-    const filteredRobots = allRobots.filter(
-    robot => {
-        return robot.name.toLowerCase().includes(searchfield.toLowerCase())
-    })
-//為何filteredRobots不放在onSearchChange裡面，而需要移到render(){}裡面呢？
-//因為這樣filteredRobots就才會是render()的區域變數，CardList要用filteredRobots時，才認得filteredRobots
-//為何searchfield得在render之外呢？
-//因為onSearch是一個function，有類似callback的功能，所以可以放在render外，而filteredRobots則不是function所以只能放render()內。
-
-//console.log('render',this.state);
-if (!allRobots.length){
-    return<h1 className = 'tc'>Loading</h1>
-} else{
-        return(
-            <div className='tc'>
-                <h1 className='f2'>RobotsFriends</h1>
-                <SearchBox searchChange = {this.onSearchChange}/>
-                <Scroll>
-                    <ErrorB>
-                        <CardList robots={ filteredRobots } />
-                    </ErrorB>
-                </Scroll>
-                
-            </div>)
-        }   
+        allRobots: []
     }
 }
 
+//App載入後，第一個執行的流程
+componentDidMount(){
+    let randomArray = [];
+    //產生10個亂數
+    for(let i=0;i<10;i++){
+        let randomNumber = Math.floor(Math.random()*88);
+        if (!randomArray.includes(randomNumber)){
+            randomArray.push(randomNumber);
+        }
+    }
+    //抓這10個亂數的Star War的人物
+    const getData = async (randomArray) => {
+        let randomRobots = [];    
+        for await (let randomNumber of randomArray){
+                let promiseFetch = await fetch(`https://swapi.co/api/people/${randomNumber}/`);
+                let temp = await promiseFetch.json();
+                temp.id = randomNumber.toString()
+                randomRobots.push(await temp);
+        }
+        this.setState({allRobots:randomRobots});
+        //allRobots在這一行被更新
+    }
+    //執行
+    getData(randomArray);
 
+}
+
+//鍵盤打字時要執行的，這是自行定義的名稱
+onSearchChange = (event) => {
+    //必須要用arrow function這個ES6的語法
+    //否則this不會被正確bind住，會是undefined
+    let searchData = async (searchfield)=>{
+        const promiseFetch = await fetch(`https://swapi.co/api/people/?search=${searchfield}`);
+        let temp = await promiseFetch.json();
+        const {results} = await temp;
+        for await (let result of results){
+            result.id = await result.url.split('/')[5];
+        }
+        //這行必須放在async裡面，才會被正確的執行
+        //因為results是個promise，所以this.setState如果放在async外面，接受searchData所return的result
+        //將會更新為一個promise，不會再管result是不是會再更新了
+        //放這裏的話，this.setState就會等results更新時，才更新allRobots
+        this.setState({allRobots:results});
+    }
+    //鍵盤發生敲擊時，回傳的event會傳入
+    searchData(event.target.value);
+}
+
+render(){
+    //當this.setState更新的時候，會重新render，allRobots就會被更新
+    const { allRobots } = this.state;
+            return(
+                <div className='tc'>
+                    <h1 className='f2'>RobotsFriends</h1>
+                    {/* 
+                    React就是靠searchChange這個props把
+                    event從onSearchChange這個callback 
+                    function傳回來。
+                    這裡所有的this都是指App的instance
+                    (class App產生的object)。
+                    */}
+                    <SearchBox searchChange = {this.onSearchChange}/>
+                    {/* 利用定義這個component，讓children有捲軸的功能 */}
+                    <Scroll>
+                        {/* 利用這個component有定義componentDidCatch()，來顯示children的錯誤訊息 */}
+                        <ErrorBoundry>
+                            {/* 利用robots這個props把更新後的allRobots資料傳下去 */}
+                            <CardList robots={ allRobots } />
+                        </ErrorBoundry>
+                    </Scroll>                
+                </div>)
+}
+
+
+
+}
 export default App;
+
+

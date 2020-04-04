@@ -12,11 +12,11 @@
     1.  取repository的名字，例如homeworkgit
     2.  點initialize this repository with a README
     3.  步驟1的右邊有網下載網址可以複製。
-    4.  在本地下資料夾下指令：  
+    4.  在本地下資料夾下指令：    
     <code>git clone https://github.com/yellowful/homeworkgit.git</code>  
     (網址請替換成自己複製的網址。)
 2. 要寫的程式、筆記、檔案存在這個資料夾中
-3. 把更動的歷史儲存，只有一個句點代表這個資料夾的所有檔。  
+3. 把更動的歷史儲存，只有一個句點代表這個資料夾的所有檔。    
     <code>git add .</code>  
 4. 在本機建立一個版本，並為版本寫下一行的說明  
     <code>git commit -m '一行說明'</code>  
@@ -25,73 +25,73 @@
     <code>i進入編輯模式</code>  
     按esc鍵會進入命令模式  
     命令模式下:wq，就是存檔離開
-6. 上傳指令：
+6. 上傳指令：  
    <code>git push</code>
-7. 要更新github上的版本，就重覆步驟4、5、6，要看現在的更動狀態的話：
+7. 要更新github上的版本，就重覆步驟4、5、6，要看現在的更動狀態的話：  
    <code>git status</code>
-8. 步驟1可以改成：
+8. 步驟1可以改成：  
    1.  開完新的repository後，把github提供的命令先複製起來放著  
     <code>git remote add origin https://github.com/yellowful/note.git</code>  
-    <code>git push -u origin master</code>
-   2. 在本機開一個和專案名稱相同的資料夾，並到到該資料夾中，下命令
+    <code>git push -u origin master</code>  
+   2. 在本機開一個和專案名稱相同的資料夾，並到到該資料夾中，下命令  
     <code>git init</code>
    3. 步驟6之前下先前複製的命令： 
     <code>git remote add origin https://github.com/yellowful/note.git</code>  
     <code>git push -u origin master</code>
 
 ## 開branch
-1. 開新branch，例如名稱設為branch1
+1. 開新branch，例如名稱設為branch1  
    <code>git branch branch1</code>
-2. 把現在狀態移到branch裡
+2. 把現在狀態移到branch裡  
    <code>git checkout branch1</code>
-3. 開始工作，改你的檔案，改完存檔。
-4. 將這個版本上傳github：
-   1. 進度存檔：
+3. 開始工作，改你的檔案，改完存檔。  
+4. 將這個版本上傳github：  
+   1. 進度存檔：  
     <code>git add .</code>  
-    <code>git commit -m 'first branch update'</code>
-   2. 因為是這個branch1第一次上傳，所以要下github端的起始指令：
+    <code>git commit -m 'first branch update'</code>  
+   2. 因為是這個branch1第一次上傳，所以要下github端的起始指令：  
     <code>git push --set-upstream origin branch1</code>
-   3. 之後這個branch要上傳都不用了下這個指令了，而是直接下：
+   3. 之後這個branch要上傳都不用了下這個指令了，而是直接下：  
     <code>git push</code>
    4. 想把主線的工作，別人新加的功能加回來這個branch的話。
-      1. 切到master：
+      1. 切到master：  
        <code>git checkout master</code>
-      2. 抓回主線的進度：
+      2. 抓回主線的進度：  
         <code>git pull</code>  
         有時候無法同步的話，改用：  
         <code>git fetch --all</code>  
         <code>git merge origin/master</code>
-      3. 切回branch：
+      3. 切回branch：  
         <code>git chechout branch1</code>
-      4. 把master整合進來：
+      4. 把master整合進來：  
         <code>git merge master</code>
       5. 檢視衝突的地方，修改檔案，存檔。
-      6. 儲存進度：
+      6. 儲存進度：  
         <code>git add .</code>  
         <code>git commit -m 'first merge'</code>
-      7. 上傳：(假如這個branch第一次上傳，請參考第2點)
+      7. 上傳：(假如這個branch第一次上傳，請參考第2點)  
         <code>git push</code>
       8. 到githb的web介面上點新的pull request。
-      9.  repository的管理者就可以點同意merge，或點comment，要求修改。或在本地端：
+      9.  repository的管理者就可以點同意merge，或點comment，要求修改。或在本地端：  
         <code>git checkout master</code>  
         <code>git merge --no-ff branch1</code>  
         <code>git push origin master</code>
 
 ## 第一次使用的常用步驟
 
-1. 首先下載git，並安裝
+1. 首先下載git，並安裝  
     <code>https://git-scm.com/</code>
-2. 到github上註冊
+2. 到github上註冊  
     <code>https://github.com/</code>
-3. 在本機上設定username和email
+3. 在本機上設定username和email  
     <code>git config --global user.name "yellowful"</code>  
     <code>git config --global user.email "richenyou@gmail.com"</code>
 
 ## 如果和線上版本衝突
-下載
+下載  
 <code>git pull</code>
 
-git會做記號，刪除不要的，保留要的，解決衝突
+git會做記號，刪除不要的，保留要的，解決衝突  
 <code>git add .</code>  
 <code>git commit -m '一行說明'</code>  
 <code>git push</code>
@@ -112,7 +112,7 @@ git會做記號，刪除不要的，保留要的，解決衝突
 1. 像開新專案一樣，只是命名要命成  
     <code>使用者名稱.github.io</code>
 2. setting裡選擇你要的theme
-3. 本地端同樣要在資料夾中新建專案  
+3. 本地端同樣要在資料夾中新建專案    
     然後要把遠地端的「使用者名稱.github.io」資料夾抓下來  
     (把yellowful替換成你自己的使用者名稱)  
     <code>git clone https://github.com/yellowful/yellowful.github.io</code>

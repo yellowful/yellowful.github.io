@@ -9,12 +9,13 @@
 *最常用的會是步驟4、5、6*
 
 1. 在github上開啟一個新的repository(專案)，把網站上的資料clone下來：
-    1.  取repository的名字，例如homeworkgit
-    2.  點initialize this repository with a README
-    3.  步驟1的右邊有網下載網址可以複製。
-    4.  在本地下資料夾下指令：    
+   1. 取repository的名字，例如homeworkgit
+   2. 點initialize this repository with a README
+   3. 步驟1的右邊有網下載網址可以複製。
+   4. 在本地下資料夾下指令：    
     <code>git clone https://github.com/yellowful/homeworkgit.git</code>  
-    (網址請替換成自己複製的網址。)
+    (網址請替換成自己複製的網址。) 
+   5. 這種git clone的方式，在本機上就不用打git init，會自動追蹤版本。
 2. 要寫的程式、筆記、檔案存在這個資料夾中
 3. 把更動的歷史儲存，只有一個句點代表這個資料夾的所有檔。    
     <code>git add .</code>  
@@ -29,7 +30,7 @@
    <code>git push</code>
 7. 要更新github上的版本，就重覆步驟4、5、6，要看現在的更動狀態的話：  
    <code>git status</code>
-8. 步驟1可以改成：  
+8. 如果不是用git clone的方式開新repository，步驟1可以改成：  
    1.  開完新的repository後，把github提供的命令先複製起來放著  
     <code>git remote add origin https://github.com/yellowful/note.git</code>  
     <code>git push -u origin master</code>  

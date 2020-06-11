@@ -8,3 +8,4 @@
    7. https://scotch.io/bar-talk/22-best-visual-studio-code-extensions-for-web-development
 2. 左邊倒數第二個，可以直接debug JavaScript
 3. debug視窗上面，可以直接開一個command line的視窗
+4. CMD+SHIFT+L可以選取所有相同的字

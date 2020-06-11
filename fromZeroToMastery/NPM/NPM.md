@@ -1,6 +1,7 @@
 1. node是讓JavaScript可以在瀏覽器以外運行的環境。
 2. node和chrome一樣是v8引擎。
-3. NPM是管理JavaScript Library的社群，現代寫程式，很少從頭開始寫了，都組合別人的Library。
+3. NPM是管理JavaScript Library的社群，現代寫程式，很少從頭開始寫了，都組合別人的Library。  
+    要用的話要先去下載node.js
 4. react就是facebook開發的一個Library：
  > sudo npm install react
 5. .json：
@@ -11,7 +12,7 @@
     >npm install 
    4. .json檔的dependencies還可以控制，正式上線前，把需要的module弄進來，其他不要放進來，以減少檔案大小。 
 6. 不錯的package：
-   1. live-server：會偵測檔案是否更動，如果有更動，會push給bowser，browser就會自動refrash。
+   1. live-server：會偵測檔案是否更動，如果有更動，會push給browser，browser就會自動refrash。
    2. lodash：更多function可以用
     > npm install lodash
    3. -g：
@@ -31,10 +32,15 @@
       5. 這個bundle檔會較大，html的link要改：
        > script type = "text/javascript" src = "bundle.js" 
 8. semver:
-   1. Semantic Versioning
+   1. Semantic Versioning版本命名
    2. 功能大改.功能小改.bug修復
 9. npm讓使用者可以從.json檔裡下command指令：
    1.  在.json檔裡：
    2.  > "scripts":{"browserify script.js > bundle.js && live-server"}
    3.  在command line裡：
    4.  > npm run build
+10. tachyons：
+    1.  在App裡下：
+        <code>npm install tachyons</code>
+    2.  在檔案裡引用：
+        <code>import 'tachyons';</code>

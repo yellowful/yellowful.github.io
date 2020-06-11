@@ -1,0 +1,36 @@
+.flex{
+    display: flex;
+}
+
+.flex-column  { flex-direction: column; }
+
+.justify-center{
+    justify-content: center;
+}
+
+.mt1 {  margin-top: var(--spacing-extra-small); }
+
+.tc  { text-align: center; }
+
+.image-box{
+    display:inline-flex;
+    position: relative;
+}
+
+.outer-box{
+    display: block;
+    position: static;
+}
+
+#celebrity-pic{
+    display: block;
+    position: relative;
+    width:500px;
+    height:auto;
+}
+.bounding-box{
+    position: absolute;
+    box-shadow: 0 0 0 3px #149df2 inset;
+    background: transparent;
+}
+

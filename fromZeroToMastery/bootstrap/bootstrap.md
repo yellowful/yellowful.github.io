@@ -2,12 +2,16 @@
 2. 要控制東西水平靠中間可以用的技巧：
 > * 用css的property：text-align:center、display:flex加上justify-content:center、margin:auto
 > * 用bootstrap的class：text-center、row配合col-12、d-flex配合justify-content-center
-3. 要控制東西垂直靠中間可以用的技巧：
+3. flex：
+   1. flex是伸縮的意思，就是那個div會隨著螢幕變大變小。
+   2. display的flex和inline-flex有一點點不一樣，inline-flex可以用在內部的div想取消flex的時候用。
+   3. flex-direction: column;時，可以讓這些div直直的排下來，要注意的是，這些div預設會張開到最寬。
+4. 要控制東西垂直靠中間可以用的技巧：
 > * html：注意div或是html的height是不是100%、margin
 > * 用css的property:display:flex加上align-items:center
 > * 用個空的div，設定height
 > * 用bootstrap的class：d-flex配合align-items-center
-4. 必走程序：
+5. 必走程序：
 > * 拷貝css的link到head中
 > * 拷貝js的link到body最下面，如此可以不用一開始就載入
 > * 若有要用google字型，link也拷貝到head中

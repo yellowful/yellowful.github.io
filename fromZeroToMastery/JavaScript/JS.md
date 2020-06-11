@@ -105,7 +105,16 @@
     6. template literals讓string裡，只要用${變數}，就可以處理變數，但要注意的是，他的括號不是括號，是用back-tick(重音符號)。
     7. 箭頭函式，用法就是把一般的函式取消function的保留字，直接用()=>{}來定義parameter和function，再把它放到一個變數裡，這種寫法讓程式較為clean。
     8. object可以很容易被destructuring，只要屬性名稱一樣，就會自動對應了。
-    9. object還有一個神奇的特殊功能，竟然可以讓**值**當成屬性的名稱，只要被包在中括號裡就好，這個也太奇妙了吧。
+       1. destructuring的時候，被宣告的新變數要被一個大括號包起來。
+       2. destructuring非常常用到，例如：
+          1. React的component的argument有大括號，就是把props這個object destructuring了。
+          2. React的component裡面，也常會把props destructuring。
+          3. React的this.setState()裡面有大括號，就是把this.state這個object destructuring。
+          4. {user.id}會出現錯誤(不確定了，要再確認)，是因為{id}是{id:user.id}的shorthand，而{id:user.id}是let id = user.id的shorthand，所以id是變數，user.id是值。但是{user.id}會變成{user.id：其他object.user.id}，user.id不可以是變數名稱，所以出現錯誤。
+          5. 前面說的{id}針對的是名稱相同的short hand用法，針對變數名稱和object的attibute名稱不同的shorthand是另一種寫法：let {name: NAME, age: AGE} = { name: "Judy", age: 40};代表的是let NAME = user.name; let AGE = user.age;
+          6. setState({a:'b'})，裡面放的是物件而不是destructure。
+              
+    9.  object還有一個神奇的特殊功能，竟然可以讓**值**當成屬性的名稱，只要被包在中括號裡就好，這個也太奇妙了吧。
     10. 新的型別symbol:宣告為symbol的目的是，即使兩個symbol的值相同，在if裡判斷時，也會被判斷為不同。
 14. function進階：
     1.  兩層的箭頭函式，使用時會有兩個()，解讀技巧在於外層的變數會傳進內層的變數，也就是最左邊function的parameter會傳進最右邊function的變數裡。
@@ -135,7 +144,13 @@
     4.  super:宣告子類別時，要沿用父類別的屬性時，呼叫的函式。
     5.  new：宣告物件時的保留字。
     6.  instantiation：宣告新物件時，就會產生新instant。
-    7.  this：觀念非常重要，指的是所在scope的父物件，注意是物件，不是類別。
+    7.  this：
+        1.  觀念非常重要，指的是所在scope的父物件，注意是物件，不是類別。例如，JavaScript內建的一些函數，前面可以加上this，這個this指的是windows物件。
+        2.  「所在scope的父物件」指的是，this寫在某個class中，用這個class可以instancia出一個object，這個object可以用一些method，這些method是在class裡面定義的，所以this.method()，的this指的是這個class實體化的object，這個method所在的scope的爸爸object。
+        3.  React中，class component如果要把爸爸的component傳進來，就要用props傳，在這個class裡要用的時候，就要加上this，例如this.props，這個this指的是這個class實體化的component object，而不是爸爸component。
+        4.  爸爸class中有this，小孩class中也有this，而且小孩引用了爸爸的某些attribute或method有this。
+            1.  當用小孩的class去實體化一個object的時候，小孩class和小孩class裡引用到爸爸的this，全都是指這個小孩object。
+            2.  當用爸爸的class去實體化一個object的時候，爸爸class裡的this指的當然就是這個爸爸object。
     8.  scope：指的是所在位置的function或class裡。
     9.  pass by value：就像variant，“=”是pass by value，意思是等號兩邊用不同塊記憶體，改變其中一值，另一值不受影響。
     10.  pass by reference：像array和object佔的記憶體較大，所以“=”兩邊佔同一塊記憶體，改變其中一值，另一個值也會變。

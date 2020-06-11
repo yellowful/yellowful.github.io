@@ -9,7 +9,9 @@
 > * horozontal line
 > * image source(alt屬性是讓圖片無法正常顯示時，可以顯示的文字)
 > * ankor reference
-2. sumit一定要搭配form才會有效
+2. form：
+   1. sumit一定要搭配form才會有效
+   2. for、value在Reac裡沒什麼用，可以刪掉。
 3. division會把某段html隔絕成一區，在css中很好用，span很類似的功能，但是只專注在設定某行
 4. div和span和內容無關，html 5和內容有關的tag，稱為semantic\(語法\)，例如：header, nav, footer，html 5新的semantic"有可能"讓google搜尋排名提高。  
 感覺排版則沒什麼差別。
@@ -20,6 +22,7 @@
 9. 如果要某一個區域讓使用者可以編輯文字，就要用一個div，屬性contenteditable設成true。
 10. 要讓輸入的文字，當一離開文字框點別的東西，就submit出去，就要加上onblur的「事件屬性」。
 11. 可以用svg的tag直接將svg向量圖嵌入html
-12. 拉條的做法是input type設成range，生命值這種顯示條是設定meter的tag
-13. 單選和多選的這種點選的選項，因為文字配合變化多端，所以要顯示的文字不需要被包在tag裡，而是value的屬性填入要顯示的文字就好，所以直接用input屬性設radio或checkbox就可以了。
-14. 但下拉式選單，裡面每一個選項顯示方式固定，所以直接包在tag裡就好了，所以是用select配合option的tag處理。
+12. 最基本的輸入的tag是input設定的type是text，其他常用的type還有search、date、email、password、number、summit、button、checkbox
+13. 拉條的做法是input type設成range，生命值這種顯示條是設定meter的tag
+14. 單選和多選的這種點選的選項，因為文字配合變化多端，所以要顯示的文字不需要被包在tag裡，而是value的屬性填入要顯示的文字就好，所以直接用input屬性設radio或checkbox就可以了。
+15. 但下拉式選單，裡面每一個選項顯示方式固定，所以直接包在tag裡就好了，所以是用select配合option的tag處理。

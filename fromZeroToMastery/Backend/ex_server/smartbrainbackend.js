@@ -1,6 +1,16 @@
 const express = require('express');
 var cors = require('cors');
-//const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt-nodejs')
+
+var db = require('knex')({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1',
+      user : 'RichardHuang',
+      password : '',
+      database : 'smartbrain_db'
+    }
+  });
 
 const app = express();
 let database={
@@ -75,10 +85,26 @@ app.post('/register',(req,res)=>{
     // });
     const isValidUser = req.body.name==='' || req.body.email==='' || req.body.password==='';
     if(!isValidUser){
-        database.users.push(newUser);
-        res.json('success')
+        const hash = bcrypt.hashSync(req.body.password);
+        db.transaction(trx => {
+            trx.insert(
+                {
+                    email:req.body.email,
+                    hash: hash
+                })
+            .into('login')
+            .returning('email')
+            .then( resEmail => {
+                return trx('users').insert({name: req.body.name, email:resEmail[0], joined: new Date})
+                .returning('*')
+                .then(resUsers => res.json('success'))
+                .catch(err => res.status(404).json('fail'))
+            })  
+            .then(trx.commit)
+            .catch(trx.rollback);          
+        })       
     } else {
-        res.json('fail')
+        res.status(404).json('fail')
     }
 
 })

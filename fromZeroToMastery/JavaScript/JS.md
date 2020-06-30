@@ -199,4 +199,3 @@
           1.   Web APIs：有DOM、AJAX、Timeout...等等。
           2.   Callback Queue：addEventListener。有個Event Loop，會不斷檢查
           3.   以setTimeout為例：web browser執行到setTimeout這行時，會丟給Web APIs，Web APIs會等時間到，再把要做的事丟給Callback Queue，Callback Que會等call stack跑完再把事情丟進call stack中。
-     4.   

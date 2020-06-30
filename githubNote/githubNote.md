@@ -97,6 +97,22 @@ git會做記號，刪除不要的，保留要的，解決衝突
 <code>git commit -m '一行說明'</code>  
 <code>git push</code>
 
+## 版本恢復
+1. 業界應該最常用revert：
+   1. <code>git revert HEAD --no-edit</code>
+   2. revert掉某個進度，就會新增一個進度記錄，而且舊紀錄不會被刪掉。
+2. reset：
+   1. local端還沒commit的時候，可以退回進度起點：
+      <code>git reset</code>
+   2. 還沒push的時候，也可以用reset來倒退版本，一個^代表退一格，以下三種方式選其中一種：
+      1. git reset master^^^
+      2. git reset HEAD^^^
+      3. git reset 目標HEAD
+3. cherry-pick：
+   1. 把要的版本挑回來
+   2. git cherry-pick fd23e1c
+   3. git cherry-pick fd23e1c 6a498ec f4f4442
+
 ## 編輯時常用markdown語法
 
 | 用途：           | 命令             |

@@ -37,6 +37,9 @@
    * forEach：list用forEach最快，這個方法的parameter一定是一個function，而這個function的第一個parameter就是list的值，第二個parameter就是list的位置。
 7. DOM：
    * DOM不是全世界，原來document是一個和內容比較有關的物件，他的兄弟還有alert、scrollbars、navigator、statusbar…等和視窗有關的物件，他們的爸爸物件是window。
+   * window的屬性：
+     * .innerWidth和.innerHeight：是螢幕截圖的大小。
+     * .screen.width和.screen.height：是browser的大小。
    * .querySelector("h2")和.getElementsByTagName("h2")[0]的效果相同。
    * .querySlectorAll("h2")[0]和.getElementsByTagName("h2")[0]的效果一樣。
    * 只要是一次會選到好幾個，一定要用中括號指定是哪一個，不然會跑不出來。
@@ -117,12 +120,19 @@
     9.  object還有一個神奇的特殊功能，竟然可以讓**值**當成屬性的名稱，只要被包在中括號裡就好，這個也太奇妙了吧。
     10. 新的型別symbol:宣告為symbol的目的是，即使兩個symbol的值相同，在if裡判斷時，也會被判斷為不同。
 14. function進階：
-    1.  兩層的箭頭函式，使用時會有兩個()，解讀技巧在於外層的變數會傳進內層的變數，也就是最左邊function的parameter會傳進最右邊function的變數裡。
-    2.  三種常見名詞的函數，需要看得懂：
+    1.  return：
+        1.  可以用來回傳值。
+        2.  可以用來中斷function的執行。
+        3.  可以用來回傳一個function，這個function被回傳後，還不會被invoke，直到被加上括號後，或傳值進去時，才會執行。
+    2.  兩層的箭頭函式，使用時會有兩個()，解讀技巧在於外層的變數會傳進內層的變數，也就是最左邊function的parameter會傳進最右邊function的變數裡。
+    3.  三種常見名詞的函數，需要看得懂：
         1.  closure：當我們需要的變數或參數希望是一個function時，我們可以利用兩層function，讓回傳值是一個function，這個回傳的function就是個closure，例如兩層的箭頭函式。closure外層的變數，會讓內層可以用，也就是執行內層function時，找不到這個變數的宣告，就會朝父function找。
         2.  currying：currying讓原本多個參數的function，利用closure簡化成多個單一參數的function的過程。例如：原本curriedSum(a)(b)，利用closure變成add5(b)的過程，目的是簡化輸入參數。
+            1.  用來可以先丟入一個參數的之後，可以回傳一個可以丟入另一個參數的function。
+            2.  使用方式是，原本定義有兩個參數括號的function的話，第一個括號要設計成先要放進去的變數，第二個括號要設計成要回傳的function中，要給人用的引數。
+            3.  例如實作RESTFUL api時，用currying的方式，讓module回傳一個function，這個function是一個接收request和response兩個parameter的function。
         3.  compose：原本有兩個function，現在定義一個compose把兩個function串在一起，輸入的參數就是兩個function，兩且第二層會有一個function是另一個function的參數的情況，而變數引數的輸入是設計在第二層之中的參數。這個引數就會鑽入一個function後鑽出進入另一個function後再鑽出。
-    3.  pure function：
+    4.  pure function：
         1.  deterministic：相同input，會獲得相同output。
         2.  no side effect：
             1.  不會有變數傳值出去，產生意外的影響，例如在function裡設一個windows的變數。
@@ -151,16 +161,24 @@
         4.  爸爸class中有this，小孩class中也有this，而且小孩引用了爸爸的某些attribute或method有this。
             1.  當用小孩的class去實體化一個object的時候，小孩class和小孩class裡引用到爸爸的this，全都是指這個小孩object。
             2.  當用爸爸的class去實體化一個object的時候，爸爸class裡的this指的當然就是這個爸爸object。
+        5.  react無法把資料上傳到爸爸component，這時可以從爸爸component下傳一個function的property，這個function會在小孩被呼叫，但是爸爸定義function的地方可以setState更新，小孩的值放在arugument的地方，藉此上傳到爸爸的this.state。
+        6.  如果code呼叫太多this，可以用destructuring，讓程式碼比較clean。
     8.  scope：指的是所在位置的function或class裡。
     9.  pass by value：就像variant，“=”是pass by value，意思是等號兩邊用不同塊記憶體，改變其中一值，另一值不受影響。
     10.  pass by reference：像array和object佔的記憶體較大，所以“=”兩邊佔同一塊記憶體，改變其中一值，另一個值也會變。
-    11.  array = array時，是pass by reference，若要pass by value，要用.concat()，來複製新的array。concat的用法是array1.concat(array2)，若只要複製array1，就讓()裡面是空的就好了。
+    11.  array1 = array2時，是pass by reference，若要pass by value，要用.concat()，來複製新的array。concat的用法是array1.concat(array2)，若只要複製array1，就讓()裡面是空的就好了。
     12.  設定object時也是pass by reference，若要pass by value，要用Object.assign()，其中注意，Object是保留字。
     13.  但是若object裡還有object，用Object.assign()會讓最裡面的object仍是pass by reference。若要最裡面的object是用pass by value，就得用JSON.parse和JSON.stringify來解決，但效能會降低。
-    14.  JSON.parse：把string轉object。
-    15.  JSON.stringify：把object轉string。
-    16.  type coercion：JS引擎會自動改變變數的型別，修正人類的錯誤，稱為coercion，但這能力太強，要非常小心，最好不要用。永遠用“===”，不要用“==”。
-    17.  []===[]為false因為兩個value相同，但reference不同。class有同樣的效果。
+    14.  array = [1,2,3]是pass by value，object = {key1:value1}也是pass by value，因為javascript會判斷右邊是變數還是值，如果是值，就會把左邊安排一塊新的記憶體用來複製右邊的值。
+    15.  把string或json轉object：(收到網路資料後)
+         1.   JSON.parse(資料)。
+         2.   資料.json()
+    16.  把object轉json或string：(送出網路資料前)
+         1.   JSON.stringify(資料)
+         2.   .json(資料)
+    17.  type coercion：JS引擎會自動改變變數的型別，修正人類的錯誤，稱為coercion，但這能力太強，要非常小心，最好不要用。永遠用“===”，不要用“==”。
+    18.  []===[]為false因為兩個value相同，但reference不同。class有同樣的效果。
+    19.  object的key一般來說是string，但是如果要讓key的type是interger或是variable，在key外面加上括號就可以了，例如{[key1]:value1}。
 17.  Prototype:
      1.   https://blog.techbridge.cc/2017/04/22/javascript-prototype/
      2.   https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/prototype.html

@@ -52,7 +52,7 @@ function isValidAge(age) {
     return age
 }
 
-// function isValidAge(age = 43) {
+// function isValidAge(age = 10) {
 //     return age;
 // }
 

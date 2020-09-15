@@ -15,7 +15,7 @@
       2. code：
          1. 這個property裡面存有程式碼，所以當把function這個object傳來傳去的時候，其實是把這段程式碼傳來傳去。
          2. 最特別的是這個code是invocable，直到被呼叫執行，才會真的執行。
-      3. 其他properties：你甚至可以設定任何properties給function，其他語言沒有這個功能。
+      3. 其他properties：你甚至可以設定任何properties給function，讓function像object一樣有property可以設定，其他語言沒有這個功能。
    2. function method：
          1. bind(obj1,para1)：
             1. copy程式碼，指定這個程式碼的this是obj1這個物件。
@@ -40,7 +40,7 @@
     3.  closure：當一個function return另一個function的時候，第一個function被invoke之後exection context會結束掉，這時候回傳的function有可能還沒被invoke，但是當這個function被invoke之後，function scope裡面的variable如果找不到declaration，就會向function外面的scope找。javascript最神奇的地方在於，外面的scope的execution context已經結束了，但是記憶體還留著，所以還找得到。
 6.  重要名詞：
     1.  資料型態：
-        1.  primitive type, primitive value：例如int、string、object的primitive type的property、等等
+        1.  primitive type, primitive value：例如int、string、或「object的primitive type的property」...等等
         2.  object：相對於primitive type則是object，例如object、function、array等等。
     2.  primitive type的型態：
         1.  mutate、mutable：變數的值變動了。

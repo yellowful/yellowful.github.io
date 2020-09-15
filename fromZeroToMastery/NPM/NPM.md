@@ -18,6 +18,8 @@
    3. -g：
       1. -g代表整台電腦都能執行，json檔不會被更動
       2. 不用-g就是只有這個資料夾，json檔會被更動，dependencies顯示關聯到哪個函式庫，而且會多一個loadash的資料夾。資料夾不需一起走去別的電腦或github上，因為別處只需要自己install一次lodash就好了。
+   4. --save：代表package.json會記載dependency
+   5. --save-dev：代表package.json記載的dependency只供開發時用，其他人安裝你的project的時候或depoly到heroku時不會被安裝。
 7. browsify：
    1. import { without } from 'lodash';的語法是webpack
    2. lodash不屬於webpack，browser無法了解require的語法，所以要用browserify來解譯：

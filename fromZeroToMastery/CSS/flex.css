@@ -22,5 +22,22 @@ img{
 }
 
 .anipractice{
-	
+	display: block;
+}
+
+.test-of-before-and-after {
+	font-size: 1em;
+	font-weight: bolder;
+}
+
+.test-of-before-and-after::before {
+	font-size: 3em;
+	font-weight: lighter;
+	content:"before";
+}
+
+.test-of-before-and-after::after {
+	font-size: 3em;
+	font-weight: lighter;
+	content:"after";
 }

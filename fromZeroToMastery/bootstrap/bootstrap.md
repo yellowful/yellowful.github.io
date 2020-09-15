@@ -32,7 +32,11 @@
 > * 要消除div旁邊的白邊，就要去設定body的margin是0
 > * img的大小用%來設定，就會依螢幕大小變化
 > * 要會固定nav的功能，用position:fixed
-7.美化網頁的免費資源：https://zerotomastery.io/resources/
+7. 美化網頁的免費資源：https://zerotomastery.io/resources/
 > * 繪圖：https://undraw.co
 > * 照片：https://unsplash.com
 > * 照片：https://www.pexels.com
+8. mailchimp：
+   1. 可以在mailchimp上設定landing page，供自己的網站或web app轉過去。
+   2. 可以設定不同的landing page，以建立不同的會員群組。
+   3. 有api可以讓後端連結。

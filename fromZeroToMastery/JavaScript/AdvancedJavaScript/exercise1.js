@@ -44,7 +44,7 @@ if (true) {
     var a = 5;
     alert(a);//5
 }
-alert(a);//注意，不是2，而是5，因為if不是fuction，而a又被重新宣告了
+alert(a);//注意，不是2，而是5，因為if不是fuction，是在同一個scope中，而a又被重新宣告了
 
 
 

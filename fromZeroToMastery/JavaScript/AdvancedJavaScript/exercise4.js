@@ -3,8 +3,8 @@
 //#1 Create a one line function that adds adds two parameters
 
 const add = (num1) => (num2) => num1 + num2;
-add(2)(3);
-const add7 = add(7);
+add(2)(3);//add(num1)(num2)
+const add7 = add(7);//num1是7
 add7(5);//7+5
 
 //Closure: What does the last line return?
@@ -43,10 +43,17 @@ const add5 = (num) => num + 5;
 compose(add1, add5)(10)
 
 //(a) => f(g(a));
-//(a) => add1(add5(a));
+//(a) => add1(add5(a));//等於先把add1和add5的程式碼帶進去
 //(10) => add1(add5(10));
 //(10) => add1(15);
 //(10) => 16
+
+
+//(a)=>add1(add5(a))
+
+
+
+
 
 //What are the two elements of a pure function?
 

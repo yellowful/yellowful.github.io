@@ -12,12 +12,16 @@ asynchronous
    1. TLS：transport layer secure
    2. SSL：secure socket layer(後繼者)
 5. JSON：
-   1. 不同電腦用的後端語言不同，和JavaScript也不同，所以不懂JavaScript的資料，所以有JASON資料格式讓不同電腦間能溝通。
-   2. 不同電腦間用純文字格式的JASON傳資料。
+   1. 不同電腦用的後端語言不同，和JavaScript也不同，所以不懂JavaScript的資料，所以有JSON資料格式讓不同電腦間能溝通。
+   2. 不同電腦間用純文字格式的JSON傳資料。
    3. JavaScript Object Notation
    4. 另一種資料格式是XML，較慢，將被淘汰。
-   5. JASON.parse：將JASON轉成object。
-   6. JASON.stringify：將資料轉成JASON。
+   5. 把string或json轉object：(收到網路資料後)
+      1. JSON.parse(資料)。
+      2. 資料.json()
+   6. 把object轉json或string：(送出網路資料前)
+      1. JSON.stringify(資料)
+      2. .json(資料)
 6. Promises：
    1. 因為JavaScript處理asynchronous的方式是，一些需要等的，就會開一個callback的thread執行，然後先執行其他行程式，都執行完了，等這些callback function有回應再執行他們。這樣會造成這些callback function讓我們很難很直覺的操控他們，讓他們依照我們要求的順序執行。如果要依照順序的話，需要一層callback包著一層callback，這就會造成所謂的the pyrimid of doom。Promises就是為了解決這個問題，他會等callback，並照then和catch順序執行，寫起來和讀起來會和synchronous的寫法很像，很好寫很好讀。
    2. 執行fetch()會得到一個Promises。
@@ -25,26 +29,31 @@ asynchronous
       1. resolved value：是promise第一個參數是一個function，這個function給他一個參數的話，這個參數就會是.then的value。
       2. reason：rejected
    4. promises有三個狀態：
-      1. fulfilled
-      2. rejected
+      1. fulfilled: 會把response傳給.then()
+      2. rejected: 會把error傳給.catch()
       3. pending
    5. 傳統作法JS需要code，等資料要等幾秒...等等，但是Promises不重視這些，它重視的是未來要如何回應。
    6. Promises可以做兩個動作：
-      1. 一個是對抓到的資料（Promises是resolved value）做指定的function，這時用.then()。
-      2. 另一個是對抓到的資料(Promises是reason)，做指定的function，通常是顯示錯誤訊息，這時用.catch()。
+      1. 一個是對抓到的資料（Promises是resolved value，例如網路抓到正確的response）做指定的function，這時用.then()。
+      2. 另一個是對抓到的資料(Promises是reason，例如沒抓到資料，或抓到錯誤資料，產生的error message)，做指定的function，通常是顯示錯誤訊息，這時用.catch()。
    7. .catch()：
       1. 只有對這一整串Promises的error執行一次，也就是整串Promises只要有一個錯，那就是錯，其他的對也沒意義。
       2. 只會抓.catch之前的error，不抓之後的。
+      3. 如果想要有對不同的錯誤去抓錯，那就要分成多串，而不是放同一串。
+      4. 不管.then()或.catch()裡面放的都會是一個call back function，可以用以下面方式求證：
+         1. 有錯誤(err給值)才會印出來：.catch(err => {console.log('failed')})
+         2. 沒錯誤(err沒給值)也會每次印出來：.catch(console.log('failed'))
+         3. 有錯誤(err給值)才會印出來：.catch(err => {console.log('failed')})
    8. Promise.all()：
       1. 可以把一堆promise收集到一個陣列中，他會等所有資料都到了才會一次把資料傳到value中。
       2. 在設定const promise = Promise的時候，Promise就開始跑了，而不會等Promise.all才開始跑那些Promise。
 7. ES8：
    1. 把asynchronous的寫法，像synchronous的寫法，但是仍然維持JavaScript的運作原理，synchronous的code全部跑完之後，才會跑asynchronous的程式碼。
-   2. 一定要先包在一個async function內，所有要等的method前面通通要加上關鍵字await。
+   2. 一定要先包在一個async function內，所有要等的method前面通通要加上關鍵字await。或這樣理解更為精準，定義function前面放async，執行的function前面放await。
    3. 在async function和await method之間可以用try把這些await method包起來，用catch(err)來處理等不到callback時的錯誤訊息。
-8. ES9：
-   1. spread operator：
+8.  ES9：
+   4. spread operator：
       1. ES6時的spread operator...主要用在array，可以把array裡的items變成逗號隔開的數字的程式碼，方便coding。
       2. ES9的spread operator...擴大到object也可以用這個功能，...rest設定了rest代表的時object剩下的所有key用逗號分開的程式碼。rest不是保留字，是新變數，可以任意取名。
-   2. .finally()，不管拿到的是value或是reason都會執行。
-   3. await loop：可以跑for await of
+   5. .finally()，不管拿到的是value或是reason都會執行。
+   6. await loop：可以跑for await of

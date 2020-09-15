@@ -112,18 +112,19 @@ Backend
       9. 可以用console.time()和console.timeEnd()來算程式執行時間。
    7. 建立一個具有RESTful API的server：
       1. 注意postman裡的value都是string，注意number和string的轉換。
-      2. router '/signin'的建立：分辨帳號和密碼是否符合
+      2. get,post,put,delete裡面的第一個argument是要被連接的end point，第二個argument是個function，而這個function只有兩個參數，一個是request，另一個是response
+      3. router '/signin'的建立：分辨帳號和密碼是否符合
          1. 先在server.js裡建個小資料庫
          2. 讓postman post object過來，要注意的是postman裡面key和value都要是用雙引號括住的字串。
          3. 用.use將string parse成objcet。
          4. 然後判斷密碼是不是符合，如果符合就回傳一個字串回去。記得要用.json傳。
-      3. router '/register'的建立：把輸入的資料，存入資料庫
+      4. router '/register'的建立：把輸入的資料，存入資料庫
          1. 把資料push進臨時資料庫中。
          2. 臨時資料庫的array的.length-1就是最後一個。
-      4. router '/profile/:id'的建立：看profile裡找不找的到id
-      5. router '/profile/image'的建立：用來計算使用者用了多少次服務
+      5. router '/profile/:id'的建立：看profile裡找不找的到id
+      6. router '/profile/image'的建立：用來計算使用者用了多少次服務
          1. 因為是更新某個人的資料，所以是.put()。
-      6. bcrypt-nodejs：
+      7. bcrypt-nodejs：
          1. 雖然這個版本已經不maintain了，但這個版本跟mac相容，比較不會出問題。
          2. bcrypt特別的是不同次hash，會得到不同的hash，但是卻可以.compare()判斷是不是相同的password，安全性很高。
          3. 但是.compare()不是synchronize的function，true或false的判斷值如果傳到function外面來的話，會來不及用，Andrei還沒教，他的判斷都還不是用hash來做，之後看他怎麼解決。
@@ -135,8 +136,61 @@ Backend
          2. header：object(裡面是'content-type':'application/json')
          3. body：字串(object的話就要用JASON.stringify())
       4. 值得注意的是fetch的content-type決定是'application/json'的話，那麼server端送回的response一定要是.json()，如果.send()，client端會對不起來，錯誤。
-      5. debug：
+      5. catch到的error不要直接傳到前端去，可能洩漏資訊。
+      6. debug：
          1. 善用chrome的networks來看front-end到底fetch出什麼，server丟出什麼response。
          2. 善用console.log：
             1. front-end：browser裡
             2. back-end：terminal裡
+   9. node環境下設定預設參數(environmental variable)：
+      1.  可以方便讓開發時和在部署到heroku上有不同的參數。
+      2.  environmental variable通常用大寫。
+      3.  variable node server.js：
+          1.  例如bash底下的用法：PORT=3000 node server.js，在server.js中process.env.POT就會是3000。
+          2.  fish底下的用法：
+              1.  env variable node server.js
+              2.  set -x key value
+              3.  很多參數的話：
+                  function setTESTENV
+                     set -g -x BROKER_IP '10.14.16.216'
+                     set -g -x USERNAME 'foo'
+                     set -g -x USERPASS 'bar'
+                  end 
+              4.  刪除：set -e variable
+7. deploy：(主要觀念是設定網址、PORT、參數，讓他們指向正確的地方。)
+   1. hostgater: 適合放靜態網站，是用apache server供人放檔案。
+   2. heroku：
+      1. 註冊
+      2. 讀文件，關於node和cli(command line interface)。
+         1.  brew install heroku/brew/heroku：安裝command line工具
+         2.  heroku login：登入heroku帳號
+         3.  遠端的app：
+             1.  heroku create：遠端開一個app，遠端會自動產生一個git檔。
+             2.  如果遠端本來就已經存在的專案，連接遠端的app：
+                  heroku git:remote -a Remote_App_Name
+         4.  git push heroku master
+           1.  git remote -v可以看遠端的名稱
+           2.  原本heroku內設遠端都叫heroku，你可以改名
+           3.  遠端新專案可以改名：git remote rename heroku newname
+           4.  但是不需要改名，就像github的remote都一樣稱為origin
+           5.  假如連接的遠端已經存在一個專案，可以把本地段關聯到遠端的專案：
+                 heroku git:remote -a Remote_App_Name
+         5.  開啟遠端的app，看看是否部署成功：
+              heroku open
+         6.  如果沒反應，可能部署失敗，可以查看遠端記錄的訊息：
+              keroku logs --tail
+      3. code參數設定：
+         1. 連線的地方：
+            1. code監聽的port：改成process.env.PORT
+            2. code裡data base的url：改成process.env.DATABASE_URL
+         2. package.json：
+            1. "start": "node fileName.js"：修改，遠端是執行這一行
+            2. "start:dev": "nodemon fileName.js"：增加，本地段執行這一行
+      4. 其他指令：
+         1. 看網址、設定：
+            1. heroku config
+         2. deploy到heroku後，可以上去看看檔案狀態： heroku run bash -a quiet-retreat-05063
+8. 安全性：
+   1. 自己架站時，為了防止DDos攻擊，可以用cloudfare的服務。
+   2. cors能解決瀏覽器的同源政策的問題，而同源政策又是什麼呢？它主要要預防的駭客攻擊是類似xss、cfrs或類似的攻擊，因為不同瀏覽視窗具有相同的cookie，所以駭客網站裡面可以藏銀行轉帳到駭客帳戶的連結，假如你剛好別的視窗開著銀行帳戶的網頁，就可能在駭客的視窗執行到駭客的連結，而對銀行帳戶進行轉帳。因為銀行網站認cookie，確認是你cookie相同沒錯，就會真得執行轉帳。https://blog.techbridge.cc/2017/02/25/csrf-introduction/?fbclid=IwAR0fkuEWoZuo2AidW-alU2eC_yXiE-inIBMSAZvcXgLgtLkhuVmnhja95Ag
+   3. 呼叫後端找資料時，最好用email，不要用id，因為id號碼連續的話，駭客可能用postman去亂猜id，取得自己以外別人的資料。

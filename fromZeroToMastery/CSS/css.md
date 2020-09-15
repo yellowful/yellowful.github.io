@@ -72,6 +72,7 @@ almanac有詳列property
     <td>個人覺得有趣，但不實用，手機無法顯示效果<br>值得一提的是，要讓last child產生hover的話，語法為:hover:last-child，瀏覽器會去認最後那個last-child</td>
   </tr>  
 </table>  
+
 7. 其中，逗號最不特定，代表都選擇。空格較不特定，>和+都是比較特定的情況，>是和繼承有關，+是和連接有關。
 8. 判斷重要性有三個原則：
 > 1. 特定性：愈特定，重要性愈高，由加總最高重要性的方式畫出來。  
@@ -103,3 +104,28 @@ almanac有詳列property
        1. 因為不管原本static的位置了，原本static的位置會消失，被兄弟div補上。
        2. 位置是相對parent移動，重點是這個parent必須不是static，如果是static就會忽略，會再找更上層。
        3. 要蓋在別的div上，就得用absolute才有辦法蓋在其他兄弟上。
+14. 背景照片透明文字不透明的用法：
+    1.  css沒有所謂透明背景的用法，而是把圖片設透明，然後把z軸改成-1、位置設成absolute，蓋在另一個relative圖層上，如下：
+    2.  div {
+          width: 200px;
+          height: 200px;
+          display: block;
+          position: relative;
+        }
+
+        div::after {
+          content: "";
+          background: url(image.jpg);
+          opacity: 0.5;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          position: absolute;
+          z-index: -1;
+        }
+15. 其他：
+    1.  ::before和::after：
+        1.  主要是在原來的tag「內」的content「前」和「後」，加入東西。
+        2.  裡面可以加上屬性content:“內容”，如此可以不用用html而達到插入網頁內容的功能。
+        
